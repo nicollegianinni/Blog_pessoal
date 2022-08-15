@@ -33,6 +33,14 @@ public class PostagemModel { //primary key
 	@Size(min = 10, max = 1000, message = "O atributo texto deve conter no mínimo 10 e no máximo 500 caracteres")
 	private String texto;
     
+    
+    // para a camada usuarioModel adiciona ... (message= "O atributo Usuario é obrigatorio")@NotNull 
+    //@ email
+    // private 
+    // notblank nao pode ter espaço em branco e nulo  ex.: nome compelta das pessoas  | @notnull  pode esta em espaço vazio ex.:  nome completo texto
+    //@one to many para usuarioModel 
+    // @ na classe postagem many to one ...("postagem") e @ many to one ("tema")
+    
     @UpdateTimestamp
     private LocalDateTime data;
     
