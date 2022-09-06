@@ -59,10 +59,10 @@ public class UsuarioControllerTest {
 	@DisplayName("Não deve permitir duplicação do Usuário")
 	public void naoDeveDuplicaruUsuario() {
 		usuarioService.cadastrarUsuario(new UsuarioModel(0L, "Maria da Silva", "maria_silva@email.com.br", "13465278",
-				"https://i.imgur.com/T12NIp9.jpg"));
+				"https://i.imgur.com/T12NIp9.jpg", "normal"));
 
 		HttpEntity<UsuarioModel> corpoRequisicao = new HttpEntity<UsuarioModel>(new UsuarioModel(0L, "Maria da Silva",
-				"maria_silva@email.com.br", "13465278", "https://i.imgur.com/T12NIp9.jpg"));
+				"maria_silva@email.com.br", "13465278", "https://i.imgur.com/T12NIp9.jpg", "normal"));
 
 		ResponseEntity<UsuarioModel> corpoResposta = testRestTemplate.exchange("/usuarios/cadastrar", HttpMethod.POST,
 				corpoRequisicao, UsuarioModel.class);
@@ -75,10 +75,10 @@ public class UsuarioControllerTest {
 	@DisplayName("Atualizar um Usuário")
 	public void deveAtualizarumUsuario() {
 		Optional<UsuarioModel> usuarioCadastrado = usuarioService.cadastrarUsuario(new UsuarioModel(0L,
-				"Juliana Andrews", "juliana_andrews@email.com.br", "julianal23", "https://i.imgur.com/yDRVekK7.jpg"));
+				"Juliana Andrews", "juliana_andrews@email.com.br", "julianal23", "https://i.imgur.com/yDRVekK7.jpg", "normal"));
 
 		UsuarioModel usuarioUpdate = new UsuarioModel(usuarioCadastrado.get().getId(), "Juliana Andrews Ramos",
-				"juliana_ramos@email.com.br", "julianal23", "https://i.imgur.com/yDRVekK7.jpg");
+				"juliana_ramos@email.com.br", "julianal23", "https://i.imgur.com/yDRVekK7.jpg", "normal");
 
 		HttpEntity<UsuarioModel> corpoRequisicao = new HttpEntity<UsuarioModel>(usuarioUpdate);
 
@@ -95,9 +95,9 @@ public class UsuarioControllerTest {
 	@DisplayName("Listar todos os Usuários")
 	public void deveMostrarTodosUsuarios() {
 		usuarioService.cadastrarUsuario(new UsuarioModel(0L, "Sabrina Sanches", "sabrina_sanches@email.com.br",
-				"sabrina1l23", "https://i.imgur.com/5M2p5Wb.jpg"));
+				"sabrina1l23", "https://i.imgur.com/5M2p5Wb.jpg", "normal"));
 		usuarioService.cadastrarUsuario(new UsuarioModel(0L, "Ricardo Marques", "ricardo_marques@email.com.br",
-				"ricardo123", "https://i.imgur.com/Sk5SjWE.jpg"));
+				"ricardo123", "https://i.imgur.com/Sk5SjWE.jpg", "normal"));
 
 		ResponseEntity<String> resposta = testRestTemplate.withBasicAuth("root@root.com", "rootroot")
 				.exchange("/usuarios/all", HttpMethod.GET, null, String.class);
